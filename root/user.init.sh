@@ -63,6 +63,10 @@ do
         ;;
     esac
 done &&
+    gpg --batch --import ${GPG_SECRET_KEY} && 
+    gpg2 --batch --import ${GPG2_SECRET_KEY} && 
+    gpg --batch --import-ownertrust ${GPG_OWNER_TRUST} && 
+    gpg2 --batch --import-ownertrust ${GPG2_OWNER_TRUST} && 
     pass init ${GPG_KEY_ID} &&
     pass git init &&
     pass git config user.name "${USER_NAME}" &&
