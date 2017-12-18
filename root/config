@@ -1,0 +1,6 @@
+Host origin
+HostName github.com
+Port 22
+User git
+IdentityFile ~/.ssh/origin_id_rsa
+
