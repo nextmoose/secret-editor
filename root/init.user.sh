@@ -64,16 +64,16 @@ do
     esac
 done &&
     gpg --batch --import ${GPG_SECRET_KEY} && 
-    gpg2 --batch --import ${GPG2_SECRET_KEY} && 
-    gpg --batch --import-ownertrust ${GPG_OWNER_TRUST} && 
-    gpg2 --batch --import-ownertrust ${GPG2_OWNER_TRUST} && 
-    pass init ${GPG_KEY_ID} &&
-    pass git init &&
-    pass git config user.name "${USER_NAME}" &&
-    pass git config user.email "${USER_EMAIL}" &&
-    pass git remote add origin origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git &&
-    pass git fetch origin master &&
-    pass git checkout master &&
-    cp /opt/docker/extension/post-commit.sh ${HOME}/.password-store/.git/hooks/post-commit &&
-    chmod 0500 ${HOME}/.password-store/.git/hooks/post-commit &&
+    # gpg2 --batch --import ${GPG2_SECRET_KEY} && 
+    # gpg --batch --import-ownertrust ${GPG_OWNER_TRUST} && 
+    # gpg2 --batch --import-ownertrust ${GPG2_OWNER_TRUST} && 
+    # pass init ${GPG_KEY_ID} &&
+    # pass git init &&
+    # pass git config user.name "${USER_NAME}" &&
+    # pass git config user.email "${USER_EMAIL}" &&
+    # pass git remote add origin origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git &&
+    # pass git fetch origin master &&
+    # pass git checkout master &&
+    # cp /opt/docker/extension/post-commit.sh ${HOME}/.password-store/.git/hooks/post-commit &&
+    # chmod 0500 ${HOME}/.password-store/.git/hooks/post-commit &&
     bash
