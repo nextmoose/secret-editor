@@ -59,7 +59,7 @@ do
             HOST_NAME="${2}" &&
                 shift 2
         ;;
-        --host-post)
+        --host-port)
             HOST_PORT="{2}" &&
                 shift 2
         ;;
