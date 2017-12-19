@@ -7,7 +7,15 @@ do
             TEMP=$(mktemp) &&
                 echo "${2}" > ${TEMP} &&
                 gpg --batch --import ${TEMP} &&
-                rm -f ${TEMP}
+                rm -f ${TEMP} &&
+                shift 2
+        ;;
+        --gpg2-secret-key)
+            TEMP=$(mktemp) &&
+                echo "${2}" > ${TEMP} &&
+                gpg2 --batch --import ${TEMP} &&
+                rm -f ${TEMP} &&
+                shift 2
         ;;
         --gpg-key-id)
             GPG_KEY_ID="${2}" &&
