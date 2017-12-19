@@ -60,7 +60,7 @@ do
                 shift 2
         ;;
         --host-port)
-            HOST_PORT="{2}" &&
+            HOST_PORT="${2}" &&
                 shift 2
         ;;
         *)
