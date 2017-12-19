@@ -3,6 +3,12 @@
 while [ ${#} -gt 0 ]
 do
     case ${1} in
+        --gpg-secret-key)
+            TEMP=$(mktemp) &&
+                echo "${2}" > ${TEMP} &&
+                gpg --batch --import ${TEMP} &&
+                rm -f ${TEMP}
+        ;;
         --gpg-key-id)
             GPG_KEY_ID="${2}" &&
                 shift 2
@@ -35,7 +41,9 @@ do
         ;;
     esac
 done &&
-    # gpg --batch --import ${GPG_SECRET_KEY} && 
+    # WORKDIR=$(mktemp -d) &&
+    # echo "${GPG_SECRET_KEY}" > ${WORKDIR}/gpg_secret_key &&
+    # gpg --batch --import ${WORKDIR}/gpg_secret_key && 
     # gpg2 --batch --import ${GPG2_SECRET_KEY} && 
     # gpg --batch --import-ownertrust ${GPG_OWNER_TRUST} && 
     # gpg2 --batch --import-ownertrust ${GPG2_OWNER_TRUST} && 
