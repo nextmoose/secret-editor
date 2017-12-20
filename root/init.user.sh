@@ -15,25 +15,14 @@ TEMP=$(mktemp -d) &&
     pass git config user.name "${USER_NAME}" &&
     pass git config user.email "${USER_EMAIL}" &&
     pass git remote add origin origin:${ORIGIN_ORGANIZATION}/${ORIGIN_REPOSITORY}.git &&
+    echo "${ORIGIN_ID_RSA}" > /home/user/.ssh/origin_id_rsa &&
     ssh-keyscan -p ${HOST_PORT} "${HOST_NAME}" > /home/user/.ssh/known_hosts &&
     (cat > /home/user/.ssh/config <<EOF
-Host upstream
-HostName ${HOST_NAME}
-Port ${HOST_PORT}
-User git
-IdentityFile ~/.ssh/upstream_id_rsa
-
 Host origin
 HostName ${HOST_NAME}
 Port ${HOST_PORT}
 User git
 IdentityFile ~/.ssh/origin_id_rsa
-
-Host report
-HostName ${HOST_NAME}
-Port ${HOST_PORT}
-User git
-IdentityFile ~/.ssh/report_id_rsa
 EOF
     ) &&
     pass git fetch origin master &&
