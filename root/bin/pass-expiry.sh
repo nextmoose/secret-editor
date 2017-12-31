@@ -1,8 +1,11 @@
 #!/bin/sh
 
-CUTOFF=$(($(date +%s)-60*60*24*7*4)) &&
+NOW=$(date +%s) &&
     pass git ls-tree -r --name-only HEAD | grep ".gpg\$" | while read FILE
     do
-        [ $(pass git log -1 --format=%at -- ${FILE}) -lt ${CUTOFF} ] &&
-            pass git log -1 --format="$(pass show ${FILE%.*} | wc --bytes) %at ${FILE%.*}" -- ${FILE}
-    done | sort -nk 2 | sort -nk 1
+        PASSWORD_AGE=$((${NOW}-$(pass git log -1 --format=%at -- ${FILE}))) &&
+            PASSWORD_AGE_LENGTH=${#PASSWORD_LENGTH} &&
+            PASSWORD_LENGTH=$(pass show ${FILE%.*} | wc --bytes) &&
+            PASSWORD_LENGTH_LENGTH=${#PASSWORD_LENGTH} &&
+            echo ${PASSWORD_LENGTH_LENGTH} ${PASSWORD_AGE_LENGTH} ${PASSWORD_LENGTH} ${PASSWORD_AGE} ${FILE%.*}
+    done | sort -nk 2 | sort -rnk 1
