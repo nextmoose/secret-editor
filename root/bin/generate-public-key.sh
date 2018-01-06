@@ -20,8 +20,6 @@ done &&
         echo Missing PASS_NAME &&
             exit 65
     fi &&
-    TEMP=$(mktemp) &&
-    rm -f ${TEMP} &&
-    ssh-keygen -f ${TEMP} -C "${COMMENT}" -P "" &&
-    cat ${TEMP} | pass insert --multiline ${PASS_NAME} &&
-    rm -f ${TEMP}
+    FILE=$(mktemp) &&
+    pass show ${PASS_NAME} > ${FILE} &&
+    ssh-keygen -f ${FILE} -y
