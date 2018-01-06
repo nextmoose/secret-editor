@@ -27,5 +27,11 @@ EOF
     ) &&
     pass git fetch origin master &&
     pass git checkout master &&
-    cp /opt/docker/extension/post-commit.sh ${HOME}/.password-store/.git/hooks/post-commit &&
-    chmod 0500 ${HOME}/.password-store/.git/hooks/post-commit
+    if [ ! -z "${READ_WRITE}" ]
+    then
+        ln -sf /usr/local/bin/post-commit ${HOME}/.password-store/.git/hooks
+    fi &&
+    if [ ! -z "${READ_ONLY}" ]
+    then
+        ln -sf /usr/local/bin/pre-comit ${HOME}/.password-store/.git/hooks
+    fi
