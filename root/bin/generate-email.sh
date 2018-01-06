@@ -15,4 +15,9 @@ do
         ;;
     esac
 done &&
+    if [ -z "${PASS_NAME}" ]
+    then
+        echo Must specify PASS_NAME &&
+            exit 65
+    fi &&
     echo ${EMAIL_USER_NAME}+$(cat /dev/urandom | tr -dc "A-Z" | fold -w 8 | head -n 1)@${EMAIL_DOMAIN_NAME} | pass insert --multiline ${PASS_NAME}
