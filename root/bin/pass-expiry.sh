@@ -7,5 +7,5 @@ NOW=$(date +%s) &&
             PASSWORD_AGE_LENGTH=${#PASSWORD_LENGTH} &&
             PASSWORD_LENGTH=$(pass show ${FILE%.*} | wc --bytes) &&
             PASSWORD_LENGTH_LENGTH=${#PASSWORD_LENGTH} &&
-            echo ${PASSWORD_LENGTH_LENGTH} ${PASSWORD_AGE_LENGTH} ${PASSWORD_LENGTH} ${PASSWORD_AGE} ${FILE%.*}
+            echo ${PASSWORD_LENGTH_LENGTH} ${PASSWORD_AGE_LENGTH} ${PASSWORD_LENGTH} $(date --date @${PASSWORD_AGE} +%Y-%b-%d) ${FILE%.*}
     done | sort -nk 2 | sort -rnk 1
